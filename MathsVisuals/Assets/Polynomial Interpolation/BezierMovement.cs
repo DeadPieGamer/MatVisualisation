@@ -1,14 +1,18 @@
 using UnityEngine;
 
+/// <summary>
+/// Moves an object along a bezier curve
+/// </summary>
 public class BezierMovement : MonoBehaviour
 {
+    [Header("Movement settings")]
+    [SerializeField, Tooltip("How much time it takes to move from point0 to point3"), Min(0.01f)] private float moveDuration = 1f;
+
     [Header("Bezier Points")]
     [SerializeField, Tooltip("Equivalent to P_0. The start-point of the bezier-curve.")] private Transform point0;
     [SerializeField, Tooltip("Equivalent to P_1. The direction the curve moves from the start-point.")] private Transform point1;
     [SerializeField, Tooltip("Equivalent to P_2. The direction the curve moves from when reaching the end-point.")] private Transform point2;
     [SerializeField, Tooltip("Equivalent to P_3. The end-point of the curve.")] private Transform point3;
-
-    [Tooltip("How much time it takes to move from point A to point B"), Min(0.01f)] private float moveDuration = 1f;
 
     [Tooltip("Equivalent to t. Where on the Bezier-Curve this currently is."), Range(0f, 1f)] private float currentLength = 0f;
 
@@ -66,7 +70,7 @@ public class BezierMovement : MonoBehaviour
     /// <summary>
     /// Calculates a point on a bezier-curve given 4 points and a t-value.
     /// </summary>
-    /// <param name="numA">You know this as P_0. The start-point of the curv.e</param>
+    /// <param name="numA">You know this as P_0. The start-point of the curve.</param>
     /// <param name="numB">Aka P_1. The direction the curve moves from the start-point.</param>
     /// <param name="numC">Aka P_2. The direction the curve moves from when reaching the end-point.</param>
     /// <param name="numD">Aka P_3. The end-point of the curve.</param>
