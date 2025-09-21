@@ -24,6 +24,7 @@ public class OrbCircleScript : MonoBehaviour
         {
             // Figure out how many orbs we got, and where this orb should be in the order
             // Orbs should have as much distance to each other as they can
+            // Parse one or both to floats so that result also is a float
             float orbOrder = (float)i / (float)orbs.Count;
 
             // Translate Time.time so that 1 second goes a complete cosine period (0-2pi)
@@ -40,8 +41,8 @@ public class OrbCircleScript : MonoBehaviour
             orbX *= orbDistance;
             orbZ *= orbDistance;
 
-            // The orbs should float at the players y-height
-            Vector3 orbPosition = new Vector3(orbX, transform.position.y, orbZ);
+            // The orbs should float around the players position
+            Vector3 orbPosition = transform.position + new Vector3(orbX, 0, orbZ);
 
             // Move the orb to this position
             orbs[i].MovePosition(orbPosition);
